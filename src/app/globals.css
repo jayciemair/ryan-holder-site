@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+/* University of Kentucky blue — PMS 286
+   Hex #0033A0 · RGB (0, 51, 160) · CMYK (100, 75, 0, 0) */
+@theme {
+  --color-uk-blue: #0033a0;
+  --color-uk-blue-dark: #002878;
+  --color-uk-blue-light: #e8eef8;
+  --color-julie-pink: #ff46a2;
+  --color-julie-pink-light: #fff0f7;
+  --color-foreground: #0033a0;
+  --font-sans: var(--font-poppins);
+}
+
+:root {
+  --uk-blue: #0033a0;
+  --uk-blue-rgb: 0 51 160;
+}
+
+body {
+  background: #ffffff;
+  color: #0033a0;
+}
