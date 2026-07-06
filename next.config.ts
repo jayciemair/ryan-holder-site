@@ -19,6 +19,9 @@ function getSupabaseHost() {
 const supabaseHost = getSupabaseHost();
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [{ source: "/memory", destination: "/", permanent: false }];
+  },
   images: supabaseHost
     ? {
         remotePatterns: [
