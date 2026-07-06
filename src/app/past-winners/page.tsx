@@ -30,7 +30,7 @@ export default function PastWinnersPage() {
               className="flex flex-col gap-6 overflow-hidden rounded-xl border border-uk-blue/15 bg-white sm:flex-row"
             >
               <div className="flex w-full shrink-0 items-center justify-center bg-uk-blue-light p-4 sm:w-44">
-                {"image" in winner && winner.image ? (
+                {winner.image ? (
                   <Image
                     src={winner.image}
                     alt={winner.name}

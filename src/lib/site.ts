@@ -50,7 +50,13 @@ export const homeSlides = [
   { src: "/images/slides/slide-4.png", alt: "Ryan Holder photos — slide 4" },
 ] as const;
 
-export const pastWinners = [
+export type PastWinner = {
+  name: string;
+  bio: string;
+  image?: string;
+};
+
+export const pastWinners: PastWinner[] = [
   {
     name: "Colin Purcell",
     image: "/images/winner-purcell.png",
@@ -86,4 +92,4 @@ export const pastWinners = [
     image: "/images/winner-emery.png",
     bio: "One of the most accomplished players ever to emerge from Kentucky tennis, Matthew Emery rose to No. 1 in the United States in the Boys' 16s and reached No. 2 nationally in the Boys' 18s. Internationally, he climbed as high as No. 12 in the ITF Junior World Rankings and No. 16 in doubles, competing in all four Junior Grand Slam tournaments and representing the United States on the U.S. National Team. Following his playing career, Emery became a successful collegiate coach and was inducted into the Kentucky Tennis Hall of Fame.",
   },
-] as const;
+];
