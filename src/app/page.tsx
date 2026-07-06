@@ -96,14 +96,8 @@ export default function Home() {
               athletes a place to compete and grow.
             </p>
             <Link
-              href="/memory"
-              className="mt-5 inline-block rounded-full bg-uk-blue px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
-            >
-              Visit the memory board
-            </Link>
-            <Link
               href="/about"
-              className="mt-3 block text-sm font-semibold text-uk-blue hover:underline"
+              className="mt-5 inline-block text-sm font-semibold text-uk-blue hover:underline"
             >
               Read about foundation gifts →
             </Link>

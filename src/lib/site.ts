@@ -38,7 +38,6 @@ export const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "Foundation Gifts" },
   { href: "/mission", label: "Mission" },
-  { href: "/memory", label: "Memory Board" },
   { href: "/past-winners", label: "Past Winners" },
   { href: "/julie-ditty", label: "Julie Ditty" },
   { href: "/sponsors", label: "Sponsors" },

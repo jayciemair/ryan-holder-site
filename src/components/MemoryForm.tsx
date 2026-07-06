@@ -1,32 +1,33 @@
 "use client";
 
 import { useActionState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { submitMemory, type SubmitMemoryState } from "@/app/memory/actions";
 
 const initialState: SubmitMemoryState = { ok: false, message: "" };
 
 type MemoryFormProps = {
-  configured: boolean;
+  autoApprove?: boolean;
+  onCancel?: () => void;
+  onSuccess?: () => void;
 };
 
-export function MemoryForm({ configured }: MemoryFormProps) {
+export function MemoryForm({
+  autoApprove = false,
+  onCancel,
+  onSuccess,
+}: MemoryFormProps) {
+  const router = useRouter();
   const [state, formAction, pending] = useActionState(submitMemory, initialState);
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     if (state.ok) {
       formRef.current?.reset();
+      router.refresh();
+      onSuccess?.();
     }
-  }, [state.ok]);
-
-  if (!configured) {
-    return (
-      <div className="rounded-xl border border-uk-blue/15 bg-uk-blue-light p-6 text-sm leading-relaxed text-foreground/80">
-        The memory board is being set up. Soon you&apos;ll be able to share photos
-        and messages here.
-      </div>
-    );
-  }
+  }, [state.ok, onSuccess, router]);
 
   return (
     <form
@@ -36,8 +37,10 @@ export function MemoryForm({ configured }: MemoryFormProps) {
     >
       <h2 className="text-xl font-bold text-uk-blue">Share a memory</h2>
       <p className="mt-2 text-sm leading-relaxed text-foreground/70">
-        Tell a story, leave a note, or share a photo of Ryan. Submissions are
-        reviewed before they appear on the board.
+        Tell a story, leave a note, or share a photo of Ryan.
+        {autoApprove
+          ? " Your memory will appear on the board right away."
+          : " Submissions are reviewed before they appear on the board."}
       </p>
 
       <div className="mt-6 space-y-4">
@@ -107,6 +110,16 @@ export function MemoryForm({ configured }: MemoryFormProps) {
       >
         {pending ? "Submitting..." : "Submit memory"}
       </button>
+
+      {onCancel && (
+        <button
+          type="button"
+          onClick={onCancel}
+          className="mt-3 text-sm font-medium text-foreground/60 transition hover:text-uk-blue"
+        >
+          Cancel
+        </button>
+      )}
     </form>
   );
 }
