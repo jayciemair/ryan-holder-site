@@ -6,6 +6,13 @@ export const metadata = {
   title: "Past Winners",
 };
 
+function winnerInitials(name: string) {
+  return name
+    .split(" ")
+    .map((part) => part[0])
+    .join("");
+}
+
 export default function PastWinnersPage() {
   return (
     <>
@@ -23,13 +30,24 @@ export default function PastWinnersPage() {
               className="flex flex-col gap-6 overflow-hidden rounded-xl border border-uk-blue/15 bg-white sm:flex-row"
             >
               <div className="flex w-full shrink-0 items-center justify-center bg-uk-blue-light p-4 sm:w-44">
-                <Image
-                  src={winner.image}
-                  alt={winner.name}
-                  width={160}
-                  height={200}
-                  className="h-44 w-36 object-contain"
-                />
+                {"image" in winner && winner.image ? (
+                  <Image
+                    src={winner.image}
+                    alt={winner.name}
+                    width={160}
+                    height={200}
+                    className="h-44 w-36 object-contain"
+                  />
+                ) : (
+                  <div
+                    className="flex h-44 w-36 flex-col items-center justify-center gap-2 rounded-lg bg-white px-2 text-center"
+                    aria-hidden="true"
+                  >
+                    <span className="flex h-16 w-16 items-center justify-center rounded-full bg-uk-blue text-lg font-bold text-white">
+                      {winnerInitials(winner.name)}
+                    </span>
+                  </div>
+                )}
               </div>
               <div className="flex flex-col justify-center p-6 sm:py-8">
                 <h2 className="text-xl font-bold text-uk-blue">{winner.name}</h2>
